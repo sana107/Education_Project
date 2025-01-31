@@ -132,76 +132,8 @@ const ExamPreparing = () => {
             />
           </Tabs>
 
-          {/* <Box sx={{ marginTop: 4 }}>
-            <Grid container spacing={3} justifyContent="flex-start">
-              {categories?.data?.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      padding: "20px",
-                      textAlign: "left",
-                      backgroundColor: "#fff5f5",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <img
-                        src={item.category}
-                        alt={item.title}
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          marginRight: "15px",
-                        }}
-                      />
-                      \{" "}
-                      <Typography variant="subtitle1" fontWeight="bold">
-                        {item.category}
-                      </Typography>
-                    </Box>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        </Box> */}
-          {/* SubCategories Box */}
-          {/* <Box sx={{ marginTop: 4 }}>
-            <Grid container spacing={3} justifyContent="flex-start">
-              {subCategories.data?.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      padding: "20px",
-                      textAlign: "left",
-                      backgroundColor: "#fff5f5",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          marginRight: "15px",
-                        }}
-                      />
-                      <Typography variant="subtitle1" fontWeight="bold">
-                        {item.examName}
-                      </Typography>
-                    </Box>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
-          </Box> */}
-          {/* SubCategories Box */}
           <NavLink to="/subexam">
-            <Box sx={{ marginTop: 4 }}>
+            <Box sx={{ marginTop: 4, backgroundColor: "red" }}>
               <Grid container spacing={3} justifyContent="flex-start">
                 {subCategories.data?.map((item, index) => (
                   <Grid item xs={12} sm={6} md={4} key={index}>
@@ -211,7 +143,7 @@ const ExamPreparing = () => {
                         padding: "10px",
                         textAlign: "left",
                         // backgroundColor: "#fff",
-                        backgroundColor: "red",
+                        backgroundColor: "cadetblue",
                         borderRadius: "15px",
                         overflow: "hidden",
                         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
@@ -240,7 +172,7 @@ const ExamPreparing = () => {
                       </Box>
 
                       {/* Exam Details */}
-                      <Box sx={{ padding: "10px" }}>
+                      <Box sx={{ padding: "10px", backgroundColor: "green" }}>
                         <Typography
                           variant="body2"
                           color="error"
@@ -268,6 +200,7 @@ const ExamPreparing = () => {
                           >
                             {item.price}/-
                           </Typography>
+
                           <Typography
                             variant="body2"
                             sx={{

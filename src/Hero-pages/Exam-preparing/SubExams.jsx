@@ -6,11 +6,34 @@ import "slick-carousel/slick/slick-theme.css";
 import React, { useState } from "react";
 import { Box, Typography, Tabs, Tab, Grid, Paper } from "@mui/material";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function SubExams() {
   const { tabData } = useSelector((state) => state.Book);
   const [selectedTab, setSelectedTab] = useState(0);
   const [showAll, setShowAll] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem("authToken"); // Retrieve token
+
+      const response = await axios.post(
+        `${baseUrl}/subExam/findByExamId`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token in headers
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchData();
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
