@@ -1,4 +1,4 @@
-import "./Books.css";
+// import "./Books.css";
 import Slider from "react-slick";
 import { Link, NavLink } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Box, Typography, Tabs, Tab, Grid, Paper } from "@mui/material";
 import { useSelector } from "react-redux";
 
-export default function Books() {
+export default function SubExams() {
   const { tabData } = useSelector((state) => state.Book);
   const [selectedTab, setSelectedTab] = useState(0);
   const [showAll, setShowAll] = useState(false);
@@ -26,99 +26,11 @@ export default function Books() {
   };
 
   return (
-    <div className="container-fluid" style={{ backgroundColor: "#EEEAEA" }}>
+    <div className="container-fluid " style={{ backgroundColor: "#EEEAEA" }}>
       <div className="container">
         <div className="book-section">
-          <div className="book-section-box">
-            <div className="boks-navbar">
-              <div>
-                <Link to="/">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </Link>
-              </div>
-              <div className="book-tittle">
-                <h6>Books</h6>
-                <span>Government Exams</span>
-              </div>
-            </div>
-            <div className="bookinput">
-              <input
-                type="search"
-                className="search-input"
-                placeholder="Search"
-              />
-              <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </div>
-            <div
-              className="search-icons2"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              <img src="https://i.ibb.co/2KFH6vB/Fill-7.png" alt="" />
-            </div>
-          </div>
           <div className="books-content">
             <Box className="examinnerbox">
-              {/* Tabs */}
-              <Tabs
-                value={selectedTab}
-                onChange={handleTabChange}
-                className="mt-3 tabsbutton"
-                variant="scrollable"
-                scrollButtons={true}
-                aria-label="scrollable prevent tabs example"
-                textColor="primary"
-                TabIndicatorProps={{
-                  style: { display: "none" },
-                }}
-                sx={{
-                  "& .MuiTab-root": {
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    borderRadius: "8px",
-                    backgroundColor: "#FDC0B6",
-                    marginX: 1,
-                    padding: "10px",
-                    fontWeight: 600,
-                    fontSize: "12px",
-                    transition: "all 0.3s",
-                    color: "#686868",
-                    fontFamily: "'Poppins', sans-serif",
-                    height: "55px",
-                  },
-                  "& .MuiTab-root.Mui-selected": {
-                    backgroundColor: "#EB3E22",
-                    color: "#fff",
-                  },
-                  "& .MuiTab-wrapper": {
-                    flexDirection: "column",
-                  },
-                }}
-              >
-                {Object.keys(tabData).map((key, index) => (
-                  <Tab
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      textAlign: "left",
-                    }}
-                    key={index}
-                    label={
-                      <span
-                        style={{
-                          fontSize: "12px",
-                          marginRight: "auto",
-                          fontFamily: "'Poppins', sans-serif",
-                        }}
-                      >
-                        {tabData[key].label}
-                      </span>
-                    }
-                    icon={<p>{tabData[key].span}</p>}
-                  />
-                ))}
-              </Tabs>
               <div className="paddininsideboxes">
                 <div
                   className="d-flex mt-4 "
@@ -136,7 +48,7 @@ export default function Books() {
                     </span>
                   </div>
                 </div>
-                {/* Dynamic Content */}
+                Dynamic Content
                 <Box sx={{ marginTop: 4 }}>
                   <Grid container spacing={3} className="bookwrap">
                     {displayedData.map((exam, index) => (

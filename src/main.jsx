@@ -21,6 +21,7 @@ import Test from "./Test/Test.jsx";
 import MyPurchase from "./payment/MyPurchase.jsx";
 import OTPVerification from "./Loginorsignup/OTPVerification.jsx";
 import LogSign from "./Loginorsignup/LogSign.jsx";
+import SubExams from "./Hero-pages/Exam-preparing/SubExams.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,11 +38,12 @@ const router = createBrowserRouter(
       {/* tuesday */}
       <Route path="/refferal" element={<Refferal />} />
 
-
-      <Route path='/payment' element={<MyPurchase/>}/>
-      <Route path="/authentication" element={<LogSign/>}/>
+      <Route path="/payment" element={<MyPurchase />} />
+      <Route path="/authentication" element={<LogSign />} />
       {/* <Route path='/login' element={<LoginSignup/>}/> */}
-      <Route path="/otp" element={<OTPVerification/>}/>
+      <Route path="/otp" element={<OTPVerification />} />
+
+      <Route path="/subexam" element={<SubExams />} />
     </Route>
   )
 );
