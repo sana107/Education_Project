@@ -1,0 +1,49 @@
+.text-flex{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.testbox{
+    padding: 10px;
+}
+.test-icon{
+    img{
+        padding: 0px 8px;
+        cursor: pointer;
+    }
+}
+.textdata{
+    color: #7E7474;
+    font-size: 13px;
+    font-weight: 500;
+    button{
+        background-color: #12B133;
+        padding: 8px 20px;
+        color: #fff;
+        border-radius: 19px;
+        border: none;
+    }
+    h6{
+        font-size: 14px;
+    }
+}
+.paddininsideboxestest{
+
+    .bookssectionround{
+        background-color: #12B133;
+        display: none;
+    }
+}
+.testlanguage23{
+    background-color: #F081813D;
+    border-radius: 2px;
+    color: #7E7474;
+    font-size: 13px;
+    font-weight: 500;
+    width: 140px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    span{
+        cursor: pointer;    
+    }
+}

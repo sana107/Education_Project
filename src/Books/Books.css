@@ -1,0 +1,152 @@
+.book-section{
+    margin-top: -18px;
+    /* padding-top: 20px; */
+    /* max-width: 1006px; */
+    /* background-color: #EEEAEA; */
+    padding-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+.book-section-box{
+    background-color: #811707;
+    border-radius: 0px 0px 12px 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 20px;
+
+}
+.boks-navbar{
+    color: #fff;
+    display: flex;
+    i{
+        font-size: 16px;
+        color: #fff;
+    }
+    .book-tittle{
+    padding-left: 20px;
+        h6{
+            font-size: 20px;
+            font-weight: 500;
+        }
+        span{
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+}
+.bookinput{
+    position: relative;
+    input{
+        width: 300px  ;
+        max-width: 300px !important;
+        padding-left: 46px;
+        border-radius: 24px;
+        border: none;
+        background-color: #F7F5F4;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+        color: #989898;
+    }
+    i{
+        position: absolute;
+        top: 25%;
+        left: 12px;
+        text-transform: lowercase !important;
+        color: #989898;
+    }
+    .search-input:focus + .search-icon {
+        opacity: 0;
+        pointer-events: none; /* Prevent interaction */
+    }
+    input:focus{
+          border: none;
+        padding-left: 30px !important;
+      }
+}
+[type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -26px;
+}
+@media (max-width:576px) {
+    .bookinput{
+        display: none;
+    }
+    .search-icons2{
+        display: block !important;
+        .bookpoint12{
+            display: block;
+        }
+    }
+}
+
+.search-icons2{
+    display: none;
+}
+.books-content{
+    padding-top: 60px;
+}
+
+
+
+/* tabs */
+.bookstabs{
+    li{
+        list-style-type: none;
+    }
+}
+.relatedcoursetab{
+    background-color: #811707;
+    text-decoration: none !important;
+}
+.bookspos{
+    position: relative;
+}
+.bookssectionround{
+    position: absolute;
+    top: -24px;
+    left: -24px;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-color: #FDC0B6;
+}
+.bookwrap{
+    display: flex;
+    flex-wrap: wrap !important;
+    justify-content: space-between;
+}
+.bookspos:hover{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+
+}
+.examinnerbox{
+   .css-1mf9qzl-MuiButtonBase-root-MuiTabScrollButton-root{
+        background-color: #FDC0B6 !important;
+        width: 46px !important;
+        height: 46px !important;
+        border-radius: 50% !important;
+        color: #fff !important;
+        font-size: 20px !important;
+        .css-120dh41-MuiSvgIcon-root {
+            width:2em  !important;
+            height: 2em !important;
+        }
+    }
+}
+.tabsbutton{
+    align-items: center !important;
+}
+.css-114mf5i-MuiTabs-root{
+    align-items: center !important;
+    align-content: center !important;
+}
+.css-1mf9qzl-MuiButtonBase-root-MuiTabScrollButton-root.Mui-disabled {
+    opacity: 0.4  !important;
+}
+    .paddininsideboxes{
+        max-width: 1006px;
+        margin: 0 auto;
+        width: 100%;
+    }

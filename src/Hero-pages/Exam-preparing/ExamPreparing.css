@@ -1,0 +1,46 @@
+.exambox {
+  position: relative;
+  overflow: hidden;
+  .hrline {
+    top: 21px;
+  }
+  .examinnerbox {
+    position: relative;
+    z-index: 2;
+  }
+}
+.examroundbox {
+  width: 400px;
+  height: 264px;
+  background-color: #ffd6d6;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  left: -338px;
+}
+.examin {
+  position: relative;
+  overflow: hidden;
+}
+.examinside {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #ffd6d6;
+  position: absolute;
+  top: -130px;
+  right: -130px;
+}
+.examheading {
+  color: #f61a25 !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  .exambox {
+    .hrline {
+      display: none;
+      top: 21px;
+    }
+  }
+}

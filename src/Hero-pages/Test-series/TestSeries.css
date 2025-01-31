@@ -1,0 +1,296 @@
+.textbox {
+  position: relative;
+  overflow: hidden;
+  .textposition {
+    z-index: 2;
+  }
+}
+.shadoww {
+  /* border: 1px solid darkblue; */
+  /* -webkit-box-shadow: 0px 0px 49px 27px rgba(247,243,246,1) !important; */
+}
+.testboxin {
+  width: 400px;
+  height: 264px;
+  /* background-color: #FFF6F6; */
+  background-color: #ffd6d6;
+  border-radius: 50%;
+  position: absolute;
+  top: 48px;
+  left: -298px;
+}
+.teztseriesinbox {
+  position: relative;
+  .teztseriesinboxindex {
+    position: relative;
+    z-index: 1;
+  }
+}
+.teztseriesinboxredius {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #ffd6d6;
+  border-radius: 50%;
+  top: -120px;
+  right: -120px;
+}
+.testviewbuttondiv {
+  margin: 0 auto !important;
+  justify-content: center;
+  display: flex;
+}
+.testviewbutton {
+  /* margin-top: 20px !important; */
+  width: 200px !important;
+  background-color: #f61a25 !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 23px;
+  border-radius: 24px !important;
+}
+.testattemp {
+  background-color: #fff;
+  color: #000;
+  align-content: center !important    ;
+  align-items: center;
+  max-width: 150px;
+  border-radius: 24px;
+  margin-left: auto;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  .css-rva1a5-MuiChip-root {
+    margin-bottom: 0px;
+  }
+  i {
+    color: #14d0e4;
+  }
+}
+.testatmp {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+.testinsideradius {
+  /* margin-top: 40px; */
+  /* margin-bottom: 40px; */
+  /* padding-top: 30px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px; */
+  background-color: #ffecec;
+  /* background-color: #FFD6D6; */
+  /* height: 200px; */
+  border: 1px solid red;
+  /* border-radius:   10px 0 0 0 !important; */
+  /* overflow: hidden; */
+  position: relative;
+}
+.textin-secton {
+  overflow: hidden;
+  margin-top: 33px;
+  margin-bottom: 33px;
+}
+.testintop {
+  background-color: #fff6f6;
+  border: 1px solid red;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  /* background-color: #000; */
+  border-radius: 50%;
+  top: -46px;
+  left: -46px;
+  z-index: 2;
+  /* background-color: #000; */
+}
+.testinright {
+  background-color: #fff6f6;
+  border: 1px solid red;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  /* background-color: #000; */
+  border-radius: 50%;
+  top: -46px;
+  right: -46px;
+  z-index: 2;
+  /* background-color: #000; */
+}
+.testinbottom {
+  background-color: #fff6f6;
+  border: 1px solid red;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  /* background-color: #000; */
+  border-radius: 50%;
+  bottom: -46px;
+  right: -46px;
+  z-index: 2;
+}
+.testinleft {
+  background-color: #fff6f6;
+  border: 1px solid red;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  /* background-color: #000; */
+  border-radius: 50%;
+  bottom: -46px;
+  left: -46px;
+  z-index: 2;
+}
+.testexam {
+  .hrline {
+    top: 18px;
+    left: 250px;
+  }
+  .second {
+    margin-right: 10px;
+  }
+}
+.texttittle {
+  padding-top: 10px;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  width: 72%;
+  margin: 0 auto;
+  /* padding-left: 35px;
+    padding-right: 35px; */
+}
+.testradiusborder {
+  position: relative;
+}
+.vrline {
+  top: 6px;
+  left: 4px;
+  width: 18px;
+  height: 66px;
+  position: absolute;
+  border-radius: 10px;
+  background-color: #ff9696;
+}
+
+.testseries {
+  padding-left: 20px;
+  padding-top: 10px;
+  border-top: 1px dashed #f61a25;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+.testlanguage {
+  font-size: 14px;
+  padding-left: 29px;
+  text-align: start !important;
+  i {
+    color: #14d0e4;
+    margin-right: 10px;
+  }
+}
+.list-unstyled {
+  h4 {
+    font-size: 1rem;
+    line-height: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+.css-s8nzjs-MuiPaper-root-MuiCard-root {
+  padding: 0px !important;
+}
+.css-1lt5qva-MuiCardContent-root {
+  padding: 10px !important;
+}
+.d-flex {
+  /* .slick-slider{
+        width: 100% !important;
+        
+    }
+     */
+}
+.textslider {
+  /* padding: 26px; */
+  width: 100% !important;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid red; */
+  /* margin: 26px; */
+  /* .slick-track{
+    display: flex !important;        
+    } */
+  .slick-slider .slick-track,
+  .slick-slider .slick-list {
+    display: flex !important;
+  }
+
+  .slick-slider {
+    width: 100% !important;
+  }
+  .slick-slide {
+    /* width: 100% !important; */
+  }
+  .teztseriesinbox {
+    width: 321px !important;
+    margin: 10px auto;
+  }
+  .MuiGrid-item {
+    width: 100% !important;
+  }
+  .slick-arrow {
+    background-color: #ff9696;
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    right: 4px;
+  }
+  .slick-next:before {
+    /* background-color: #000 !important; */
+    color: #ffecec;
+  }
+  .slick-prev {
+    left: 4px;
+    position: absolute;
+    z-index: 10;
+  }
+  .slick-dots {
+    display: none !important;
+  }
+  .slick-next {
+    /* display: none !important; */
+  }
+  @media (max-width: 767px) {
+    .slick-prev {
+      left: -24px;
+      position: absolute;
+      z-index: 10;
+    }
+    .slick-next {
+      right: -24px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .slick-prev {
+      left: -14px;
+      position: absolute;
+      z-index: 10;
+    }
+    .slick-next {
+      right: -14px;
+    }
+  }
+}
+.teztseriesinbox {
+}
+
+/* .slider-container{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+  } */
+@media (max-width: 390x) {
+  .teztseriesinbox {
+    width: 279px !important;
+    margin: 10px auto;
+  }
+}
