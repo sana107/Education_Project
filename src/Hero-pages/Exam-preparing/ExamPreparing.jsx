@@ -126,6 +126,7 @@ const ExamPreparing = () => {
                   onClick={() => setCategoryId(category._id)}
                 />
               ))}
+
             <Tab
               label={viewMore ? "Show Less" : "Show More"}
               onClick={handleViewMore}
@@ -143,7 +144,7 @@ const ExamPreparing = () => {
                         padding: "10px",
                         textAlign: "left",
                         // backgroundColor: "#fff",
-                        backgroundColor: "cadetblue",
+                        backgroundColor: "red",
                         borderRadius: "15px",
                         overflow: "hidden",
                         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
@@ -200,7 +201,6 @@ const ExamPreparing = () => {
                           >
                             {item.price}/-
                           </Typography>
-
                           <Typography
                             variant="body2"
                             sx={{

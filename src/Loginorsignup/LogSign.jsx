@@ -184,10 +184,7 @@ const LogSign = () => {
       });
 
       if (response.data.status) {
-        localStorage.setItem("authToken", response.data.data.token);
-
-        console.log("Token:", token);
-
+        localStorage.setItem("authToken", response.data.token);
         // window.location.href = '/otp';
       } else {
         alert(response.data.message);
@@ -197,37 +194,6 @@ const LogSign = () => {
       setErrors({ ...errors, email: "Invalid email or password" });
     }
   };
-
-  // Handle form submission for sign-up
-  // const handleSignUpSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(`${baseUrl}/user/register`, {
-  //       fullName: signUpValues.fullName,
-  //       number: signUpValues.number,
-  //       email: signUpValues.email,
-  //       password: signUpValues.password,
-  //       dob: signUpValues.dob,
-  //       address: signUpValues.address,
-  //       state: signUpValues.state,
-  //       city: signUpValues.city,
-  //       pincode: signUpValues.pincode,
-  //     });
-
-  //     if (response.data.status) {
-  //       // Store only the phone number in localStorage
-  //       localStorage.setItem("userPhoneNumber", signUpValues.number);
-  //       alert("Sign up successful!");
-  //       window.location.href = "/otp"; // Redirect to OTP page after successful sign-up
-  //     } else {
-  //       alert(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Sign up failed", error);
-  //   }
-  // };
-
-  // newfuntion
 
   // Handle form submission for sign-up
   const handleSignUpSubmit = async (e) => {
@@ -247,18 +213,9 @@ const LogSign = () => {
 
       if (response.data.status) {
         // Store only the phone number in localStorage
-        console.log(response);
-        console.log(response.data.data._id); // "6799f04dd93b36e122624014"
-        console.log(response.data.data.otp); // "502443"
-        navigate("/otp", {
-          state: {
-            userId: response.data.data._id,
-            otps: response.data.data.otp,
-          },
-        });
         localStorage.setItem("userPhoneNumber", signUpValues.number);
         alert("Sign up successful!");
-        // window.location.href = "/otp"; // Redirect to OTP page after successful sign-up
+        window.location.href = "/otp"; // Redirect to OTP page after successful sign-up
       } else {
         alert(response.data.message);
       }

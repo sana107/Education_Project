@@ -13,28 +13,6 @@ export default function SubExams() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [showAll, setShowAll] = useState(false);
 
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem("authToken"); // Retrieve token
-
-      const response = await axios.post(
-        `${baseUrl}/subExam/findByExamId`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send token in headers
-          },
-        }
-      );
-
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  fetchData();
-
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
