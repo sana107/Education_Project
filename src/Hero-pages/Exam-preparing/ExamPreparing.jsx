@@ -191,6 +191,7 @@ const ExamPreparing = () => {
                           sx={{
                             display: "flex",
                             alignItems: "center",
+                            // justifyItems: "between",
                             marginTop: "5px",
                           }}
                         >
@@ -217,6 +218,8 @@ const ExamPreparing = () => {
                           >
                             {item.students} Std
                           </Typography>
+
+                          <button className="btn btn-danger">view</button>
                         </Box>
                       </Box>
                     </Paper>
