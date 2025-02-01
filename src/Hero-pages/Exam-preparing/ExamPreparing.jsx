@@ -6,8 +6,12 @@ import { Box, Typography, Tabs, Tab, Grid, Paper } from "@mui/material";
 import "./ExamPreparing.css";
 import { baseUrl } from "../../../Config";
 import { NavLink } from "react-router-dom";
+import { setSubExam } from "../../features/examSlice/subExamSlice";
+import { useDispatch } from "react-redux";
 // import { data } from "react-router-dom";
 const ExamPreparing = () => {
+  const dispatch = useDispatch();
+
   const [selectedTab, setSelectedTab] = useState(0);
   const [viewMore, setViewMore] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -16,9 +20,38 @@ const ExamPreparing = () => {
   const [categoryId, setCategoryId] = useState("");
 
   // Replace this with your actual Bearer token
-  const BEARER_TOKEN =
+  const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZhOTdhZTJlMTM3MGY2OTI2NTE0ZTEiLCJpYXQiOjE3MzgxNDU4MzN9.1WFIDe0tjsK6nhM8gtY9VOBgHQH1_AFkCRuhI4yix2E";
+  const getSubExam = (examId) => {
+    console.log(examId);
+    const fetchSubExam = async () => {
+      try {
+        const response = await axios.post(
+          `${baseUrl}/subExam/findByExamId`,
+          { examId },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Adding Bearer token here
+            },
+          }
+        );
+        console.log(response);
+        if (response.data.status) {
+          let subExamData = response.data.data;
+          console.log(subExamData, "hi this is datat");
+          dispatch(setSubExam(subExamData)); // Send data to Redux store
+        } else {
+          alert(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchSubExam();
+  };
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -26,7 +59,7 @@ const ExamPreparing = () => {
           `${baseUrl}/category/findAllCategories`,
           {
             headers: {
-              Authorization: `Bearer${BEARER_TOKEN}`, // Adding Bearer token here
+              Authorization: `Bearer ${token}`, // Adding Bearer token here
             },
           }
         );
@@ -66,7 +99,7 @@ const ExamPreparing = () => {
         { categoryId },
         {
           headers: {
-            Authorization: `Bearer ${BEARER_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -75,6 +108,7 @@ const ExamPreparing = () => {
       console.error("Error fetching subcategories:", error);
     }
   };
+
   if (loading) {
     return <p>Loading categories...</p>;
   }
@@ -117,7 +151,7 @@ const ExamPreparing = () => {
               },
             }}
           >
-            {categories.data
+            {categories?.data
               .slice(0, viewMore ? categories.data.length : 3)
               .map((category, index) => (
                 <Tab
@@ -137,7 +171,14 @@ const ExamPreparing = () => {
             <Box sx={{ marginTop: 4, backgroundColor: "red" }}>
               <Grid container spacing={3} justifyContent="flex-start">
                 {subCategories.data?.map((item, index) => (
-                  <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    key={index}
+                    onClick={() => getSubExam(item._id)}
+                  >
                     <Paper
                       elevation={3}
                       sx={{
