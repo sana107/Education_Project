@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Typography, Tabs, Tab, Grid, Paper } from "@mui/material";
+import { Box, Typography, Tabs, Tab, Grid, Paper, Button } from "@mui/material";
 import "./ExamPreparing.css";
 import { baseUrl } from "../../../Config";
 import { NavLink } from "react-router-dom";
 import { setSubExam } from "../../features/examSlice/subExamSlice";
 import { useDispatch } from "react-redux";
 // import { data } from "react-router-dom";
+
 const ExamPreparing = () => {
   const dispatch = useDispatch();
 
@@ -168,7 +169,7 @@ const ExamPreparing = () => {
           </Tabs>
 
           <NavLink to="/subexam">
-            <Box sx={{ marginTop: 4, backgroundColor: "red" }}>
+            <Box sx={{ marginTop: 4 }}>
               <Grid container spacing={3} justifyContent="flex-start">
                 {subCategories.data?.map((item, index) => (
                   <Grid
@@ -178,27 +179,33 @@ const ExamPreparing = () => {
                     md={4}
                     key={index}
                     onClick={() => getSubExam(item._id)}
+                    sx={{ textDecoration: "none" }}
                   >
                     <Paper
                       elevation={3}
                       sx={{
-                        padding: "10px",
+                        padding: 2,
                         textAlign: "left",
-                        // backgroundColor: "#fff",
-                        backgroundColor: "red",
-                        borderRadius: "15px",
+                        backgroundColor: "#fff",
+                        borderRadius: "16px",
                         overflow: "hidden",
-                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                        transition: "transform 0.2s, box-shadow 0.2s",
+                        cursor: "pointer",
+                        "&:hover": {
+                          transform: "translateY(-4px)",
+                          boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
+                        },
                       }}
                     >
-                      {/* Exam Image */}
+                      {/* Image Container */}
                       <Box
                         sx={{
                           position: "relative",
                           width: "100%",
-                          height: "140px",
-                          borderRadius: "10px",
+                          height: "200px",
+                          borderRadius: "12px",
                           overflow: "hidden",
+                          mb: 2,
                         }}
                       >
                         <img
@@ -208,59 +215,123 @@ const ExamPreparing = () => {
                             width: "100%",
                             height: "100%",
                             objectFit: "cover",
-                            borderRadius: "10px",
+                            transition: "transform 0.3s",
                           }}
                         />
                       </Box>
 
-                      {/* Exam Details */}
-                      <Box sx={{ padding: "10px", backgroundColor: "green" }}>
+                      {/* Content Container */}
+                      <Box sx={{ px: 1 }}>
+                        {/* Category */}
                         <Typography
-                          variant="body2"
+                          variant="subtitle2"
                           color="error"
-                          fontWeight="bold"
-                          sx={{ textTransform: "uppercase" }}
+                          fontWeight="600"
+                          sx={{
+                            textTransform: "uppercase",
+                            letterSpacing: "0.5px",
+                            mb: 1,
+                          }}
                         >
                           {item.category}
                         </Typography>
-                        <Typography variant="h6" fontWeight="bold">
+
+                        {/* Exam Name */}
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 700,
+                            mb: 2,
+                            fontSize: "1.1rem",
+                            lineHeight: 1.3,
+                            height: "2.6rem",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                          }}
+                        >
                           {item.examName}
                         </Typography>
 
-                        {/* Price, Rating, Students Count */}
+                        {/* Details Row */}
                         <Box
                           sx={{
                             display: "flex",
                             alignItems: "center",
-                            // justifyItems: "between",
-                            marginTop: "5px",
+                            justifyContent: "space-between",
+                            mt: "auto",
                           }}
                         >
-                          <Typography
-                            variant="body1"
-                            color="error"
-                            fontWeight="bold"
-                          >
-                            {item.price}/-
-                          </Typography>
-                          <Typography
-                            variant="body2"
+                          {/* Left side info */}
+                          <Box
                             sx={{
-                              marginLeft: "10px",
                               display: "flex",
                               alignItems: "center",
+                              gap: 1.5,
                             }}
                           >
-                            ⭐ {item.rating}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{ marginLeft: "10px" }}
-                          >
-                            {item.students} Std
-                          </Typography>
+                            <Typography
+                              variant="body1"
+                              color="error"
+                              sx={{ fontWeight: 700 }}
+                            >
+                              ₹{item.price}
+                            </Typography>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 0.5,
+                                color: "#666",
+                              }}
+                            >
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 0.5,
+                                }}
+                              >
+                                ⭐ {item.rating}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  "&::before": {
+                                    content: '"•"',
+                                    mx: 0.5,
+                                  },
+                                }}
+                              >
+                                {item.students} Students
+                              </Typography>
+                            </Box>
+                          </Box>
 
-                          <button className="btn btn-danger">view</button>
+                          {/* View Button */}
+                          <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            sx={{
+                              minWidth: "80px",
+                              borderRadius: "20px",
+                              textTransform: "none",
+                              fontWeight: 600,
+                              boxShadow: "none",
+                              "&:hover": {
+                                boxShadow: "none",
+                                background: "#d32f2f",
+                              },
+                            }}
+                          >
+                            View
+                          </Button>
                         </Box>
                       </Box>
                     </Paper>

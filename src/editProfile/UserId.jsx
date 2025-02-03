@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Drawer,
   List,
@@ -12,15 +12,10 @@ import {
   Box,
   TextField,
   Button,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  colors,
 } from "@mui/material";
 import {
   Menu,
@@ -37,28 +32,13 @@ import {
   Close,
 } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { baseUrl } from "../../Config";
 
-// Dynamically simulated user data
-const initialUserData = {
-  name: "Girja Rajput",
-  email: "mailto:girja@example.com",
-  phone: "123-456-7890",
-  gender: "female",
-  dob: "1990-01-01",
-  profileImage: "https://via.placeholder.com/60",
-};
 const menuItems = [
   {
     text: "Profile edit ",
-    icon: (
-      <Avatar
-        src={initialUserData.profileImage}
-        alt="User"
-        sx={{ color: "red" }}
-      />
-    ),
+    icon: <Avatar sx={{ color: "red" }} />,
   },
   { text: "Share the app", icon: <Share sx={{ color: "red" }} /> },
   { text: "Rate the app", icon: <Star sx={{ color: "red" }} /> },
@@ -77,33 +57,15 @@ const menuItems = [
 const UserId = () => {
   const [open, setOpen] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
-  //   const [userData, setUserData] = useState("");
   const [userData, setUserData] = useState({});
-
-  const [editedData, setEditedData] = useState({ ...userData });
-
-  const toggleDrawer = () => setOpen(!open);
-  const handleEditDialogOpen = () => {
-    // API call when user clicks on 'Profile edit'
-    fetchProfileData();
-    setOpenEditDialog(true);
-  };
-
-  const handleEditDialogClose = () => setOpenEditDialog(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSaveChanges = () => {
-    setUserData(editedData);
-    handleEditDialogClose();
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchProfileData = async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      const token = localStorage.getItem("authToken"); // Get the stored token
+      const token = localStorage.getItem("authToken");
       if (!token) throw new Error("No token found");
 
       const response = await axios.post(
@@ -115,22 +77,64 @@ const UserId = () => {
       );
 
       if (response.data.status) {
-        console.log(response, "USER ID");
-        setUserData(response.data.data); // ✅ Ensure data is set
+        setUserData(response.data.data);
       } else {
-        setUserData({}); // ✅ Avoid null state
+        setError("Failed to fetch profile data");
+        setUserData({});
       }
     } catch (error) {
       console.error("Error fetching profile data:", error);
-      setUserData({}); // ✅ Handle failure gracefully
+      setError(error.message);
+      setUserData({});
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch profile data when drawer opens
+  useEffect(() => {
+    if (open) {
+      fetchProfileData();
+    }
+  }, [open]);
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  const handleEditDialogOpen = () => {
+    setOpenEditDialog(true);
+  };
+
+  const handleEditDialogClose = () => {
+    setOpenEditDialog(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      if (!token) throw new Error("No token found");
+
+      handleEditDialogClose();
+      // Refresh profile data after update
+      fetchProfileData();
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      setError(error.message);
     }
   };
 
   return (
     <>
-      <IconButton onClick={toggleDrawer} sx={{ color: "" }}>
+      <IconButton onClick={toggleDrawer}>
         <Menu />
       </IconButton>
+
       <Drawer anchor="right" open={open} onClose={toggleDrawer}>
         <Box
           sx={{
@@ -147,18 +151,25 @@ const UserId = () => {
           >
             <Close />
           </IconButton>
-          <Avatar
-            src={userData.profileImage}
-            sx={{ width: 60, height: 60, mx: "auto" }}
-          />
-          <Typography variant="h6">{userData.fullName}</Typography>
 
-          <Typography variant="body2" sx={{ color: "white" }}>
-            {userData.email}
-          </Typography>
+          {isLoading ? (
+            <Typography>Loading...</Typography>
+          ) : error ? (
+            <Typography color="error">{error}</Typography>
+          ) : (
+            <>
+              <Avatar
+                src={userData.profileImage}
+                sx={{ width: 60, height: 60, mx: "auto" }}
+              />
+              <Typography variant="h6">{userData.fullName}</Typography>
+              <Typography variant="body2">{userData.email}</Typography>
+            </>
+          )}
         </Box>
+
         <List>
-          {menuItems.map(({ text, icon, action }, index) => (
+          {menuItems.map(({ text, icon }, index) => (
             <ListItemButton
               key={index}
               onClick={
@@ -166,19 +177,7 @@ const UserId = () => {
               }
             >
               <ListItemIcon>{icon}</ListItemIcon>
-              {action ? (
-                <NavLink
-                  to={action}
-                  style={({ isActive }) => ({
-                    textDecoration: "none",
-                    color: isActive ? "red" : "inherit",
-                  })}
-                >
-                  <ListItemText primary={text} />
-                </NavLink>
-              ) : (
-                <ListItemText primary={text} />
-              )}
+              <ListItemText primary={text} />
             </ListItemButton>
           ))}
           <Divider />
@@ -188,7 +187,6 @@ const UserId = () => {
             </ListItemIcon>
             <ListItemText primary="Sign Out" />
           </ListItemButton>
-          <Divider />
         </List>
       </Drawer>
 
@@ -210,55 +208,34 @@ const UserId = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            name="name"
-            value={userData.fullName}
+            name="fullName"
+            value={userData.fullName || ""}
             onChange={handleInputChange}
-            InputLabelProps={{ shrink: true }} // ✅ Prevents overlap
+            InputLabelProps={{ shrink: true }}
           />
+
           <TextField
             label="Email"
             variant="outlined"
             fullWidth
             margin="normal"
             name="email"
-            // value={userData.email}
-            value={userData?.email || ""}
+            value={userData.email || ""}
             onChange={handleInputChange}
-            InputLabelProps={{ shrink: true }} // ✅ Prevents overlap
+            InputLabelProps={{ shrink: true }}
           />
-
-          {/* <TextField
-            label="Email"
-            name="email"
-            value={editedData?.email || ""}
-            onChange={handleInputChange}
-            fullWidth
-            margin="normal"
-          /> */}
 
           <TextField
             label="Phone"
             variant="outlined"
             fullWidth
             margin="normal"
-            name="phone"
-            value={userData.number}
+            name="number"
+            value={userData.number || ""}
             onChange={handleInputChange}
-            InputLabelProps={{ shrink: true }} // ✅ Prevents overlap
+            InputLabelProps={{ shrink: true }}
           />
-          {/* <FormControl fullWidth margin='normal'>
-            <InputLabel>Gender</InputLabel>
-            <Select
-              name='gender'
-              value={userData.gender}
-              onChange={handleInputChange}
-              label='Gender'
-            >
-              <MenuItem value='male'>Male</MenuItem>
-              <MenuItem value='female'>Female</MenuItem>
-              <MenuItem value='other'>Other</MenuItem>
-            </Select>
-          </FormControl> */}
+
           <TextField
             label="Date of Birth"
             variant="outlined"
@@ -271,9 +248,8 @@ const UserId = () => {
                 ? new Date(userData.dob).toISOString().split("T")[0]
                 : ""
             }
-            InputLabelProps={{
-              shrink: true,
-            }}
+            onChange={handleInputChange}
+            InputLabelProps={{ shrink: true }}
           />
         </DialogContent>
         <DialogActions>

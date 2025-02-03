@@ -10,6 +10,7 @@ const SubExamSlice = createSlice({
     },
   },
 });
+
 export const { setSubExam } = SubExamSlice.actions; // Export actions
 
 export default SubExamSlice.reducer;
