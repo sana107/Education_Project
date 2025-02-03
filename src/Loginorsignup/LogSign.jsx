@@ -184,7 +184,8 @@ const LogSign = () => {
       });
 
       if (response.data.status) {
-        localStorage.setItem("authToken", response.data.token);
+        alert(response.data.message);
+        localStorage.setItem("authToken", response.data.data.token);
         // window.location.href = '/otp';
       } else {
         alert(response.data.message);
