@@ -8,6 +8,7 @@ import { baseUrl } from "../../../Config";
 import { NavLink } from "react-router-dom";
 import { setSubExam } from "../../features/examSlice/subExamSlice";
 import { useDispatch } from "react-redux";
+import { setCategoryData } from "../../features/categoryslice/CategorySlice";
 // import { data } from "react-router-dom";
 
 const ExamPreparing = () => {
@@ -39,7 +40,6 @@ const ExamPreparing = () => {
         console.log(response);
         if (response.data.status) {
           let subExamData = response.data.data;
-          console.log(subExamData, "hi this is datat");
           dispatch(setSubExam(subExamData)); // Send data to Redux store
         } else {
           alert(response.data.message);
@@ -66,6 +66,8 @@ const ExamPreparing = () => {
         );
         if (response.data.status) {
           setCategoryId(response.data.data[0]._id);
+          console.log(response.data);
+          dispatch(setCategoryData(categories.data)); //change here
         }
         setCategories(response.data); // Assuming API returns an array of categories
       } catch (error) {

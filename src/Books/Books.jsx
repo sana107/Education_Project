@@ -6,9 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 import React, { useState } from "react";
 import { Box, Typography, Tabs, Tab, Grid, Paper } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Books() {
   const { tabData } = useSelector((state) => state.Book);
+  const { categoryData } = useSelector((state) => state.Category);
   const [selectedTab, setSelectedTab] = useState(0);
   const [showAll, setShowAll] = useState(false);
 
@@ -24,7 +26,6 @@ export default function Books() {
   const toggleShowAll = () => {
     setShowAll(!showAll);
   };
-
   return (
     <div className="container-fluid" style={{ backgroundColor: "#EEEAEA" }}>
       <div className="container">
@@ -96,7 +97,7 @@ export default function Books() {
                   },
                 }}
               >
-                {Object.keys(tabData).map((key, index) => (
+                {Object.keys(categoryData).map((key, index) => (
                   <Tab
                     style={{
                       fontSize: "16px",
@@ -112,7 +113,7 @@ export default function Books() {
                           fontFamily: "'Poppins', sans-serif",
                         }}
                       >
-                        {tabData[key].label}
+                        {tabData[key].categoryName}
                       </span>
                     }
                     icon={<p>{tabData[key].span}</p>}
