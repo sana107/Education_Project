@@ -66,10 +66,9 @@ const ExamPreparing = () => {
         );
         if (response.data.status) {
           setCategoryId(response.data.data[0]._id);
-          console.log(response.data);
+          setCategories(response.data);
           dispatch(setCategoryData(categories.data)); //change here
         }
-        setCategories(response.data); // Assuming API returns an array of categories
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {

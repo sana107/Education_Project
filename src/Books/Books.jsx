@@ -17,9 +17,8 @@ export default function Books() {
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
-
-  const currentData = Array.isArray(tabData[selectedTab]?.exams)
-    ? tabData[selectedTab].exams
+  const currentData = Array.isArray(categoryData[selectedTab]?.data)
+    ? categoryData[selectedTab].data
     : []; // Default to an empty array if exams is not an array
 
   const displayedData = showAll ? currentData : currentData.slice(0, 6); // Display only 10 items or all based on the state
@@ -97,7 +96,7 @@ export default function Books() {
                   },
                 }}
               >
-                {Object.keys(categoryData).map((key, index) => (
+                {Object.keys(categoryData)?.map((key, index) => (
                   <Tab
                     style={{
                       fontSize: "16px",
@@ -113,10 +112,10 @@ export default function Books() {
                           fontFamily: "'Poppins', sans-serif",
                         }}
                       >
-                        {tabData[key].categoryName}
+                        {categoryData[key]?.categoryName}
                       </span>
                     }
-                    icon={<p>{tabData[key].span}</p>}
+                    icon={<p>{categoryData[key]?.span}</p>}
                   />
                 ))}
               </Tabs>
@@ -126,7 +125,9 @@ export default function Books() {
                   style={{ justifyContent: "space-between" }}
                 >
                   <div>
-                    <h5 className="examheading">{tabData[selectedTab].span}</h5>
+                    <h5 className="examheading">
+                      {categoryData[selectedTab]?.span}
+                    </h5>
                   </div>
                   <div>
                     <span
@@ -140,7 +141,7 @@ export default function Books() {
                 {/* Dynamic Content */}
                 <Box sx={{ marginTop: 4 }}>
                   <Grid container spacing={3} className="bookwrap">
-                    {displayedData.map((exam, index) => (
+                    {displayedData?.map((exam, index) => (
                       <Grid item key={index}>
                         <NavLink
                           to={`/book/${exam.link}`}

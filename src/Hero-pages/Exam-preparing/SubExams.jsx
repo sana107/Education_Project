@@ -53,7 +53,7 @@ export default function SubExams() {
                     </span>
                   </div>
                 </div>
-                Dynamic Content
+                {/* Dynamic Content */}
                 <Box sx={{ marginTop: 4 }}>
                   <Grid container spacing={3} className="bookwrap">
                     {subExamData.map((exam, index) => (
