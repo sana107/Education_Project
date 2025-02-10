@@ -720,19 +720,3 @@ const Bookslice = createSlice({
 });
 
 export default Bookslice.reducer;
-
-// import { createSlice } from "@reduxjs/toolkit";
-// const BookSlice = createSlice({
-//   name: "Book",
-//   initialState: {
-//     subBookData: [],
-//   },
-//   reducers: {
-//     setBookData: (state, action) => {
-//       state.subExamData = action.payload; // Update the user state with the dispatched payload
-//     },
-//   },
-// });
-
-// export const { setBookData } = BookSlice.actions;
-// export default BookSlice.reducer;
